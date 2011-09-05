@@ -1,0 +1,18 @@
+Ping ID: <%= @ping.id %><br />
+Message: <%= @ping.message %><br />
+Phone Number: <%= @ping.phone.number unless @ping.phone.nil? %><%= @ping.twitter_username %><br />
+Longitude: <%= @ping.longitude %><br />
+Latitude: <%= @ping.latitude %><br />
+Created: <%= @ping.created_at.to_s(:short) %><br />
+<br />
+Data:<br />
+<table>
+<tr><th>Key</th><th>value</th></tr>
+<% for keyvalue in @keyvalues %>
+	<tr><td><%= keyvalue.key %></td><td><%= keyvalue.value %></td>
+	<td><%= link_to 'Edit', edit_ping_keyvalue_url(@ping, keyvalue) %></td>
+	<td><%= link_to 'Destroy', ping_keyvalue_path(@ping, keyvalue), :confirm => 'Are you sure?', :method => :delete %></td></tr>
+<% end %>
+</table>
+
+<%= link_to 'Manage Keyvalues', ping_keyvalues_path(@ping) %>

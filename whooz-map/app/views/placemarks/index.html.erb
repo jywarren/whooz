@@ -1,0 +1,24 @@
+<h1>Listing placemarks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Ping</th>
+    <th>Phone</th>
+  </tr>
+
+<% for placemark in @placemarks %>
+  <tr>
+    <td><%=h placemark.name %></td>
+    <td><%=h placemark.ping_id %></td>
+    <td><%=h placemark.phone_id %></td>
+    <td><%= link_to 'Show', placemark %></td>
+    <td><%= link_to 'Edit', edit_placemark_path(placemark) %></td>
+    <td><%= link_to 'Destroy', placemark, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New placemark', new_placemark_path %>

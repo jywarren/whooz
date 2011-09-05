@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>WHOOZ</title>
+	<script src="/javascripts/prototype.js" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="js/scriptaculous.js" type="text/javascript" charset="utf-8"></script> -->
+	<!-- <script src="js/dragdrop.js" type="text/javascript" charset="utf-8"></script> -->
+	<!-- <link rel="stylesheet" href="style.css" type="text/css" media="screen" title="no title" charset="utf-8"> -->
+	<script type="text/javascript" charset="utf-8">
+		var frame = 0, width = <%= @width %>, height = <%= @height %>
+		new Ajax.PeriodicalUpdater("loader", "/map/animals_<%= @city %>.js", {
+		  method: 'get', frequency: 3, evalJS: 'force' })
+	</script>
+	<style type="text/css" media="screen">
+		body {
+			margin:0;
+		}
+		canvas {
+			background:url('/maps/<%= @city %>.png');
+		}
+	</style>
+</head>
+<body>
+
+<canvas id="canvas" width="<%= @width %>" height="<%= @height %>"></canvas>
+
+<div id="loader">
+	<script type="text/javascript" charset="utf-8">
+			frame += 1
+	</script>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	var canvas = document.getElementById('canvas').getContext('2d');
+	canvas.globalAlpha = 0.6
+	canvas.lineWidth = 3
+	
+	<% for ping in @pings %>
+	canvas.save()
+	canvas.strokeStyle = "<%= ping.color %>"
+	canvas.translate(<%= (ping.longitude-@nw_lon)*@lon_scale %>,height+(-1*<%= (ping.latitude-@nw_lat)*@lat_scale %>))
+	canvas.beginPath()
+	canvas.arc(0,0,6,0,Math.PI*2,false)
+	// canvas.fillText("<%= ping.message %>",0,0)
+	canvas.stroke()
+	canvas.restore()
+	<% end %>
+</script>
+
+</body>
+
+</html>

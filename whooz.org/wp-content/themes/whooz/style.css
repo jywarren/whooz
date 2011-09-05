@@ -1,0 +1,105 @@
+/*
+Theme Name: WHOOZ Theme
+Theme URI: http://wordpress.org/
+Description: Theme for WHOOZ project
+Version: 0.1
+Author: Jeffrey Warren
+Author URI: http://vestaldesign.com/
+*/
+
+html {
+	background:#ede3d7 url('/wp-content/themes/whooz/black.gif') top repeat-x;
+}
+body {
+	font-family:helvetica, arial, sans-serif;
+	font-size:0.9em;
+	margin:0;
+	width:1050px;
+}
+
+a {
+	color:#333;
+	font-weight:bold;
+}
+a:hover {
+	color:#000;
+}
+b {
+	color:#222;
+}
+em {
+	color:#222;
+	font-family:courier;
+	font-style:normal;
+}
+
+#header {
+	padding-top:80px;
+	text-align:right;
+	padding-right:20px;
+	clear:both;
+	height:70px;
+	background:black;
+	color:white;
+}
+#header .links {
+	font-size:0.7em;
+	padding-left:20px;
+	padding-top:35px;
+	float:left;
+}
+#header a {
+	color:white;
+	text-decoration:none;
+}
+#header a:hover {
+	color:#eee;
+}
+#header .links a {
+	padding-right:12px;
+}
+#header h1 {
+	margin-bottom:0;
+}
+
+.box {
+	border:2px solid #dabbae;
+	padding:14px;
+	background:#F4F3E0;
+}
+
+#content {
+	padding:20px;
+	margin-bottom:10px;
+	color:#545b3e;
+	font-size:.8em;
+}
+#content .col {
+	padding:0 20px;
+	width:180px;
+	float:left;
+	border-right:2px dotted #dabb8e;
+}
+#content h2 {
+	margin-top:0;
+	color:#454535;
+}
+#content .col img {
+	border:2px solid #dabbae;
+}
+#map {
+	border:2px solid #dabbae;
+}
+
+.post {
+	border-right:2px dotted #dabb8e;
+	width:450px;
+	padding-right:30px;
+}
+
+#footer {
+	background:#F4F3E0;
+	clear:both;
+	border-top:1px solid #dabbae;
+	padding:10px;
+}

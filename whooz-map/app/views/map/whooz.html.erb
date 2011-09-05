@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>WHOOZ</title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= stylesheet_link_tag 'style' %>
+	<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAANO6Yx8ihhesSqnPHx9a3RxQa-_yUq9c3dZEaW6BFINsaJn7L6BR1PRXCksOYmHqJxfUwrGNo1fm5WA" type="text/javascript"></script>
+	<script type="text/javascript">
+
+	function initialize() {
+	  if (GBrowserIsCompatible()) {
+	    var map = new GMap2(document.getElementById("map_canvas"));
+	    map.setCenter(new GLatLng(<%= @latitude %>, <%= @longitude %>), <%= @zoom %>);
+		map.setMapType(G_HYBRID_MAP);
+		// var mapControl = new GMapTypeControl();
+		// map.addControl(mapControl);
+		// map.addControl(new GLargeMapControl());
+		
+		//		#@latitude = 40.886
+		// 	    #@longitude = -74.033
+		// 	    # @latitude = 40.686
+		// 	    # @longitude = -73.898
+		// var bounds = GLatLngBounds(GLatLng(40.886,-74.033),GLatLng(40.686,-73.898))
+		// var whoozMap = GGroundOverlay("/maps/manhattan.png", bounds)
+		// map.addOverlay(whoozMap);
+		
+		kml = new GGeoXml("http://18.85.23.148/~jeff/overlay.kml"); 
+		map.addOverlay(kml);
+
+		<% for ping in @pings %>
+		
+			var latitude = <%= ping.latitude %>;
+			var longitude = <%= ping.longitude %>;
+			
+			var point = new GLatLng(latitude,longitude);
+			var icon = new GIcon(G_DEFAULT_ICON);
+			icon.image = "/images/stem-ff6549-orange.png";
+			icon.iconSize = new GSize(10,10);
+		  	markerOptions = { icon:icon };
+			var marker = new GMarker(point,markerOptions);
+			map.addOverlay(marker);
+			
+			var label = new TLabel();
+			label.id = '<%= ping.id %>';
+			label.anchorLatLng = point;
+			label.anchorPoint = 'bottomCenter';
+			label.markerOffset = new GSize (0,23);
+			label.content = "<p style='padding:6px 8px;font-weight:bold;text-align:center;color:#fff;width:100px;background:#ff6549;font-size:.8em;'><input id='ping_<%= ping.id %>' style='vertical-align:bottom;' type='checkbox' /> <label for='ping_<%= ping.id %>'><b><%= time_ago_in_words(ping.created_at) %></b>: <%= ping.message %></label></p>";
+			label.percentOpacity = 80;
+			map.addTLabel(label);
+			
+		<% end %>
+
+	  }
+	}
+
+	</script>
+	<script src="/javascripts/tlabel.2.05.js" type="text/javascript"></script>
+	<style type="text/css" media="screen">
+		html {background:#f8f8f8;}
+		body {width:1480px;margin:30px;padding:40px 30px;}
+		i {color:#FF6549;}
+		h1 {font-family:georgia;font-weight:normal;font-size:4em;}
+		input.output {
+			float:left;
+		}
+		.button {
+			color:#fff;
+			padding:20px;
+			background:#FF6549;
+			float:left;
+			display:block;
+			margin-right:12px;
+			font-size:1.4em;
+		}
+		a:hover.button {
+			background:#EE5438;
+		}
+	</style>
+
+</head>
+<body onload="initialize()" onunload="GUnload()">
+
+<h1><i>NextMap:</i> Send "follow nextmap" to 40404</h1>
+
+<p style="color: green"><%= flash[:notice] %></p>
+
+<p id="navigation">
+	<a href="/">Map</a> | 
+	<a href="/messages">Messages</a> | 
+	<a href="/pings">Pings</a> | 
+	<a href="/phones">Phones</a> | 
+	<a href="http://nextlab.mit.edu/fall2008/nextmap/">About</a>
+</p>
+
+<p><b>"<i>L:</i>Mashrak, Bihar" or "flood"</b></p>
+
+<div id="map_canvas" style="width: 1160px; height: 1000px"></div>
+
+<p style="font-size:1.5em;font-family:georgia;">
+	<a class="button" href="javascript:void(0);">Send</a> <input style="font-size:2.2em;" type="text" id="outgoing" /> <br /><br />
+	<label for="outgoing">Send a message to the selected recipients</label>
+</p>
+</body>
+</html>

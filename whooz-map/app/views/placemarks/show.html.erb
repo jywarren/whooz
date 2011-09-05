@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @placemark.name %>
+</p>
+
+<p>
+  <b>Ping:</b>
+  <%=h @placemark.ping_id %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%=h @placemark.phone_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_placemark_path(@placemark) %> |
+<%= link_to 'Back', placemarks_path %>

@@ -1,0 +1,21 @@
+<h1>New message</h1>
+
+<% form_for(@message) do |f| %>
+  <%= f.error_messages %>
+
+	<p>
+
+		<label for="message_dmsisdnA">Recipient</label><br />
+		<input type="text" name="message[dmsisdnA]" value="7184966293" id="message_dmsisdnA" /><br /><br />
+
+		<label for="message_content">Content</label><br />
+		<textarea type="text" name="message[content]" id="message_content" rows="5" cols="70">Hey there!</textarea><br /><br />
+		
+	</p>
+
+  <p>
+    <%= f.submit "Send" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', messages_path %>

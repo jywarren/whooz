@@ -1,0 +1,20 @@
+<h1>Pings#show</h1>
+
+<table>
+<tr>
+	<td><%= @ping.message %></td>
+	<td><%= @ping.phone.number unless @ping.phone.nil? %><%= @ping.twitter_username %></td>
+	<td><%= @ping.street_number %> <%= @ping.thoroughfare %>, <%= @ping.locality %> <%= @ping.state %></td>
+	<td><%= @ping.longitude %></td>
+	<td><%= @ping.latitude %></td>
+	<td><%= @ping.created_at.to_s(:short) %></td>
+	<td><%= "location" if @ping.ping_type == 0 %><%= "message" if @ping.ping_type == 1 %></td>
+  <td><%# link_to 'Show', phone %></td>
+  <td><%# link_to 'Destroy', phone, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% for keyvalue in @ping.keyvalues %>
+		<td><%= keyvalue.key %></td>
+		<td><%= keyvalue.value %></td>
+		<td><%= link_to 'Manage Keyvalues', ping_keyvalues_path(@ping) %>
+	<% end %>
+</tr>
+</table>

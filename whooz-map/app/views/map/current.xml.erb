@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pings type="array">
+<% for ping in @pings %>
+  <ping>
+    <name><%= ping.phone.name %></name>
+    <number><%= ping.phone.number %></number>
+    <created-at type="datetime"><%= ping.created_at %></created-at>
+    <latitude type="float"><%= ping.latitude %></latitude>
+    <longitude type="float"><%= ping.longitude %></longitude>
+  </ping>
+<% end %>
+</pings>

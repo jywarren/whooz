@@ -1,0 +1,48 @@
+<h1>New ping</h1>
+
+<% form_for(@ping) do |f| %>
+  <%= f.error_messages %>
+
+	<p>
+		<label for="ping_content">Content</label><br />
+		<textarea type="text" name="ping[content]" id="ping_content" rows="5" cols="70">Hey there!</textarea><br /><br />
+	</p>
+
+	<select name="ping[phone_id]" id="ping_phone_id">
+		<% for phone in Phone.find :all %>
+		<option value="<%= phone.id %>"><%= phone.number %> (<%= phone.name %>)</option>
+		<% end %>
+	</select><br /><br />
+
+	<label for="ping_address">Address</label><br />
+	<input type="text" name="ping[address]" value="" id="ping_address" /><br /><br />
+
+  <p>
+    <%= f.submit "Send" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', messages_path %>
+
+
+<!-- 
+	
+t.string   "content"
+t.string   "address"
+t.string   "country"
+t.string   "locality"
+t.string   "thoroughfare"
+t.string   "postalcode"
+t.integer  "accuracy"
+t.float    "latitude"
+t.float    "longitude"
+t.string   "message"
+t.integer  "phone_id"
+t.integer  "ping_type"
+t.datetime "created_at"
+t.datetime "updated_at"
+t.string   "state"
+t.integer  "tid"
+t.string   "street_number"
+
+-->

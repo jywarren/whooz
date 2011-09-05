@@ -1,0 +1,12 @@
+<h1>Keyvalues#edit</h1>
+
+<%= error_messages_for('keyvalue') %>  
+ 
+<% form_tag ping_keyvalue_path(@ping, @keyvalue), :method => :put do -%>    
+ <%= render :partial => 'keyvalues/form' %>    
+ 
+ <fieldset>      
+   <button type="submit">Update</button>      
+   <%= link_to 'Cancel', ping_keyvalues_path %>    
+ </fieldset>  
+<% end -%>

@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>WHOOZ</title>
+	<!-- <link rel="stylesheet" href="http://whooz.org/wp-content/themes/whooz/style.css" type="text/css" media="screen" title="no title" charset="utf-8"> -->
+	<script src="/javascripts/prototype.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div id="safari-search">
+	<form action="javascript:void(0)" onSubmit="new Ajax.Updater('safari','/map/safari/'+$('safari_input').value,{ method: 'get' })" method="get" accept-charset="utf-8">
+		<p><input type="text" name="safari_input" value="" id="safari_input"></p>
+		<p><input type="submit" value="Go on a safari &raquo;"></p>
+	</form>
+</div>
+
+<div id="safari">
+	
+</div>
+
+</body>
+</html>

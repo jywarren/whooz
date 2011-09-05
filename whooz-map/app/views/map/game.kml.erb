@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<% @pings.each do |tile| %>  <Placemark>
+    <description><%= tile.content.gsub('&','&amp;') %></description>
+    <size><%= tile.diameter %></size>
+    <Point>
+      <coordinates><%= tile.longitude %>,<%= tile.latitude %></coordinates>
+    </Point>
+  </Placemark>
+<% end %>
+</Document>
+</kml>

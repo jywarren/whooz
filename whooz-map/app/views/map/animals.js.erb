@@ -1,0 +1,14 @@
+	canvas.clearRect(0,0,width,height)
+	frame += 1
+	canvas.lineWidth = 3
+		
+	<% for ping in @pings %>
+	canvas.save()
+	canvas.strokeStyle = "<%= ping.color %>"
+	canvas.translate(<%= (ping.longitude-@nw_lon)*@lon_scale %>,height+(-1*<%= (ping.latitude-@nw_lat)*@lat_scale %>))
+	canvas.beginPath()
+	canvas.arc(0,0,6,0,Math.PI*2,false)
+	// canvas.fillText("<%= ping.message %>",0,0)
+	canvas.stroke()
+	canvas.restore()
+	<% end %>

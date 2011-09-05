@@ -1,0 +1,31 @@
+<h1>Listing messages</h1>
+
+<table>
+  <tr style="font-weight:bold;">
+	<td>Datetime</td>
+	<td>Status</td>
+	<td>Type</td>
+	<td>Recipient</td>
+	<td>Sender</td>
+	<td>Content</td>
+	<td>Imported</td>
+  </tr>
+
+<% for message in @messages %>
+  <tr>
+	<td><%= message.dateTimeP %></td>
+	<td><%= message.status %></td>
+	<td><%= message.message_type %></td>
+	<td><%= message.dmsisdnA %></td>
+	<td><%= message.omsisdnA %></td>
+	<td><%= message.content %></td>
+	<td><%= "true" if !message.ping.nil? && message.message_type == 1 %></td>
+    <td><%= link_to 'Show', message %></td>
+    <td><%= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New message', new_message_path %>

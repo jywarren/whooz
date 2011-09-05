@@ -1,0 +1,36 @@
+<h1>Listing pings</h1>
+
+<p>
+	<a href="/pings/new">New ping</a>
+</p>
+
+<table>
+  <tr style="font-weight:bold;">
+	<td>Message</td>
+	<td>Number</td>
+	<td>Last ping</td>
+	<td>Longitude</td>
+	<td>Latitude</td>
+	<td>Created</td>
+	<td>Type</td>
+	<td>Animal</td>
+  </tr>
+
+<% for ping in @pings %>
+  <tr>
+	<td><%= ping.message %></td>
+	<td><%= ping.phone.number unless ping.phone.nil? %><%= ping.twitter_username %></td>
+	<td><%= ping.address %></td>
+	<td><%= ping.longitude %></td>
+	<td><%= ping.latitude %></td>
+	<td><%= ping.created_at.to_s(:short) %></td>
+	<td><%= "location" if ping.ping_type == 0 %><%= "message" if ping.ping_type == 1 %></td>
+    <td><%= ping.ping_type %></td>
+	<td><%= ping.animal_key %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%# link_to 'New message', new_phone_path %>

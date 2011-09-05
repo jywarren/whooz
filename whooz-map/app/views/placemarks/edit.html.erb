@@ -1,0 +1,24 @@
+<h1>Editing placemark</h1>
+
+<% form_for(@placemark) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :ping_id %><br />
+    <%= f.text_field :ping_id %>
+  </p>
+  <p>
+    <%= f.label :phone_id %><br />
+    <%= f.text_field :phone_id %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @placemark %> |
+<%= link_to 'Back', placemarks_path %>
